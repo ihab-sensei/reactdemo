@@ -10,6 +10,9 @@ export const RESET_MOVIES = 'RESET_MOVIES';
 export const FETCH_MOVIE = 'FETCH_MOVIE';
 export const FETCH_MOVIE_SUCCESS = 'FETCH_MOVIE_SUCCESS';
 export const FETCH_MOVIE_FAILURE = 'FETCH_MOVIE_FAILURE';
+export const FETCH_SIMILAR = 'FETCH_SIMILAR';
+export const FETCH_SIMILAR_SUCCESS = 'FETCH_SIMILAR_SUCCESS';
+export const FETCH_SIMILAR_FAILURE = 'FETCH_SIMILAR_FAILURE';
 export const FETCH_STAR_SUCCESS = 'FETCH_STAR_SUCCESS';
 export const FETCH_STAR_FAILURE = 'FETCH_STAR_FAILURE';
 export const FETCH_CASTS = 'FETCH_CASTS';
@@ -77,6 +80,24 @@ function fetchMovieSuccess(data) {
 function fetchMovieFail(error) {
   return {
     type: FETCH_MOVIE_FAILURE,
+    error
+  };
+}
+function fetchSimilar() {
+  return {
+    type: FETCH_SIMILAR
+  };
+}
+function fetchSimilarSuccess(data) {
+  return {
+    type: FETCH_SIMILAR_SUCCESS,
+    data
+  };
+}
+
+function fetchSimilarFail(error) {
+  return {
+    type: FETCH_SIMILAR_FAILURE,
     error
   };
 }
@@ -169,6 +190,16 @@ export function fetchMovieDetail(id){
       .then(response => response.json())
       .then(data => dispatch(fetchMovieSuccess(data)))
       .catch(error => dispatch(fetchMovieFail(error)))
+  }
+}
+export function fetchSimilarMovies(id){
+  const url_movie = URL_DETAIL + id + "/similar"+ API_KEY;
+  return function(dispatch){
+    dispatch(fetchSimilar())
+    return fetch(url_movie)
+      .then(response => response.json())
+      .then(data => dispatch(fetchSimilarSuccess(data)))
+      .catch(error => dispatch(fetchSimilarFail(error)))
   }
 }
 

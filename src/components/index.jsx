@@ -12,7 +12,8 @@ import StarInfo from './StarInfo';
 import MovieList from './MovieList';
 import Trailer from './Trailer';
 import TrailerList from './TrailerList';
+import SimilarMovies from './SimilarMovies';
 
-export {Cast, CastList, ChartData, DisplayMsg, MovieList, Poster, Description,
+export {Cast, CastList,SimilarMovies, ChartData, DisplayMsg, MovieList, Poster, Description,
   StarInfo, MovieInfo, Title, SubTitle, SubTitleWithIcon,
   Trailer, TrailerList};
